@@ -1,10 +1,10 @@
-import Sidebar from "./components/SideBarComponent.tsx";
-
+import './App.css'
+import HomePage from "./pages/HomePage.tsx";
 function App() {
 
   return (
     <>
-        <Sidebar/>
+        <HomePage/>
     </>
   )
 }
