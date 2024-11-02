@@ -12,7 +12,7 @@ const NavBar: React.FC = () => {
 
     return (
         <>
-            <header className="w-full h-fit">
+            <header className="w-full border-b-2 h-fit">
                 <nav className="flex justify-between text-black bg-white p-7 backdrop-blur-sm">
                     <div className="font-bold">
                         <h1>Friends</h1>

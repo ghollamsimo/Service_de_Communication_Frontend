@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {FaCog, FaRegUser} from "react-icons/fa";
+import { FaCog, FaRegUser } from "react-icons/fa";
 import { MdOutlineGroups } from "react-icons/md";
 import { TiMessage } from "react-icons/ti";
-import {MenuItem} from "../constant.ts";
-import Profile from '../assets/profile.jpg'
-import {CiLogout} from "react-icons/ci";
+import { MenuItem } from "../constant.ts";
+import Profile from '../assets/profile.jpg';
+import { CiLogout } from "react-icons/ci";
 
-
-const Sidebar: React.FC = () => {
+const Messages: React.FC = () => {
     const [open, setOpen] = useState<boolean>(true);
 
     useEffect(() => {
@@ -31,11 +30,11 @@ const Sidebar: React.FC = () => {
             <div
                 className={`${
                     open ? "w-72" : "w-20"
-                } bg-[#1B0036] h-screen p-5 pt-8 relative flex flex-col justify-between duration-300`}
+                } bg-white border-l-2 h-screen p-5 pt-8 relative flex flex-col justify-between duration-300 ml-auto`}
             >
                 <div>
                     <div className="flex gap-x-4 items-center">
-                        <div className={'text-black rounded rounded-br-2xl bg-white px-2 py-1'}>
+                        <div className="text-black rounded rounded-br-2xl bg-white px-2 py-1">
                             <h1 className={`text-xl ${open && "rotate-[360deg]"} duration-500`}>
                                 MS
                             </h1>
@@ -58,7 +57,7 @@ const Sidebar: React.FC = () => {
                             >
                                 <span className="text-xl">{menu.icon}</span>
                                 <span
-                                    className={`${!open && "hidden"}  origin-left duration-200`}
+                                    className={`${!open && "hidden"} origin-left duration-200`}
                                 >
                                     {menu.title}
                                 </span>
@@ -69,10 +68,10 @@ const Sidebar: React.FC = () => {
                 <div className="text-gray-300 mb-4">
                     <div className="flex items-center gap-7">
                         <div className="block md:hidden">
-                            <CiLogout className={'text-xl'}/>
+                            <CiLogout className="text-xl" />
                         </div>
                         <div className="hidden md:flex items-center gap-7">
-                            <img className="w-14 rounded-lg h-14" src={Profile} alt="Profile"/>
+                            <img className="w-14 rounded-lg h-14" src={Profile} alt="Profile" />
                             <div>
                                 <h1>Jordan Betord</h1>
                                 <span className="text-sm">@ Jordan Betord</span>
@@ -80,11 +79,9 @@ const Sidebar: React.FC = () => {
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     );
 };
 
-export default Sidebar;
+export default Messages;

@@ -1,6 +1,8 @@
 import React from "react";
 import Sidebar from "../components/SideBarComponent";
 import NavBar from "../components/NavBarComponent";
+import Friends from "../components/FriendsComponent.tsx";
+import Messages from "../components/MessagesComponent.tsx";
 
 const HomePage: React.FC = () => {
     return (
@@ -8,10 +10,11 @@ const HomePage: React.FC = () => {
             <Sidebar />
             <div className="flex-1 flex flex-col">
                 <NavBar />
-                <main className="p-4  min-h-dvh flex-1 flex justify-center align-middle items-center bg-gray-100">
-                    Welcome to the HomePage!
+                <main className="m-5 mt-14 flex-1 flex">
+                    <Friends />
                 </main>
             </div>
+            <Messages/>
         </div>
     );
 };
