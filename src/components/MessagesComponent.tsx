@@ -35,17 +35,10 @@ const Messages: React.FC = () => {
                 <div>
                     <div className="flex gap-x-4 items-center">
                         <div className="text-black rounded rounded-br-2xl bg-white px-2 py-1">
-                            <h1 className={`text-xl ${open && "rotate-[360deg]"} duration-500`}>
-                                MS
+                            <h1 className={`text-xl`}>
+                                Messages
                             </h1>
                         </div>
-                        <h1
-                            className={`text-white font-bold origin-left text-xl duration-200 ${
-                                !open && "scale-0"
-                            }`}
-                        >
-                            Chat
-                        </h1>
                     </div>
                     <ul className="pt-6 mt-8">
                         {Menus.map((menu, index) => (

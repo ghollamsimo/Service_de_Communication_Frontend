@@ -8,3 +8,7 @@ export interface NotificationDropdownProps {
     isOpen: boolean;
     toggleDropdown: () => void;
 }
+
+export interface FriendsProps {
+    onFriendClick: () => void;
+}

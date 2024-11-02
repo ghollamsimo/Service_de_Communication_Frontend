@@ -1,4 +1,3 @@
-// NavBar.tsx
 import React, { useState } from "react";
 import { IoNotificationsOutline } from "react-icons/io5";
 import Notification from "./NotificationComponent.tsx";
