@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Contact from "./ContactComponent.tsx";
 import {TbEdit} from "react-icons/tb";
+import {Contacts} from "../constant.ts";
 
 const Messages: React.FC = () => {
     const [open, setOpen] = useState<boolean>(true);
@@ -19,7 +20,12 @@ const Messages: React.FC = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    const Friends: Contacts[] = [
+        {image: 'src/assets/profile.jpg', name: 'Mohamed' ,message: 'Thanks for the quick response', isOnline: true},
+        {image: 'src/assets/profile.jpg', name: 'ghollam' , message: 'Thanks for the quick response' ,isOnline: true},
+    ]
 
+    console.log('fff', Friends)
     return (
         <div className="flex">
             <div
@@ -35,16 +41,23 @@ const Messages: React.FC = () => {
                             </h1>
                         </div>
 
-                        <div onClick={toggleContact}>
-                            <TbEdit className="text-2xl font-bold" />
+                        <div >
+                            <TbEdit onClick={toggleContact} className="text-2xl font-bold" />
                             <Contact
                                 isOpen={isContactOpen}
-                                toggleDropdown={toggleContact}
+                                setIsContactOpen={setIsContactOpen}
                             />
                         </div>
                     </div>
-                    <ul className="pt-6 mt-8">
-
+                    <ul className="pt-6 space-y-4 mt-8">
+                        {Friends.map((friend, index) => (
+                            <li className={"flex items-center space-x-3"} key={index}>
+                                <img className={'w-11 rounded-lg '} src={friend?.image} alt={'user'}/>
+                                <span className={'text-sm'}>{friend.name}</span>
+                                <span className={'text-sm text-gray-300'}>{friend.message}</span>
+                                <span>{friend.isOnline}</span>
+                            </li>
+                        ))}
                     </ul>
                 </div>
 

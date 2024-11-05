@@ -12,3 +12,10 @@ export interface NotificationDropdownProps {
 export interface FriendsProps {
     onFriendClick: () => void;
 }
+
+export interface Contacts{
+    image: string | null;
+    name: string;
+    message: string;
+    isOnline: boolean;
+}
