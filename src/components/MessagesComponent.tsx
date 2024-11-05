@@ -21,8 +21,8 @@ const Messages: React.FC = () => {
     }, []);
 
     const Friends: Contacts[] = [
-        {image: 'src/assets/profile.jpg', name: 'Mohamed' ,message: 'Thanks for the quick response', isOnline: true},
-        {image: 'src/assets/profile.jpg', name: 'ghollam' , message: 'Thanks for the quick response' ,isOnline: true},
+        {image: 'src/assets/profile.jpg', name: 'Mohamed', time: 10 ,message: 'Thanks for the quick response', isOnline: true},
+        {image: 'src/assets/profile.jpg', name: 'ghollam', time: 11 , message: 'Thanks for the quick response..' ,isOnline: true},
     ]
 
     console.log('fff', Friends)
@@ -30,11 +30,11 @@ const Messages: React.FC = () => {
         <div className="flex">
             <div
                 className={`${
-                    open ? "w-72" : "w-20"
+                    open ? "w-full" : "w-20"
                 } bg-white border-l-2 h-screen p-5 pt-8 relative flex flex-col justify-between duration-300 ml-auto`}
             >
                 <div>
-                    <div className="flex gap-x-28 items-center">
+                    <div className="flex gap-x-28 justify-between items-center">
                         <div className="text-black rounded rounded-br-2xl bg-white px-2 py-1">
                             <h1 className={`text-xl`}>
                                 Messages
@@ -49,16 +49,23 @@ const Messages: React.FC = () => {
                             />
                         </div>
                     </div>
-                    <ul className="pt-6 space-y-4 mt-8">
+                    <div className="pt-6 m-1 space-y-4 mt-8">
                         {Friends.map((friend, index) => (
-                            <li className={"flex items-center space-x-3"} key={index}>
-                                <img className={'w-11 rounded-lg '} src={friend?.image} alt={'user'}/>
-                                <span className={'text-sm'}>{friend.name}</span>
-                                <span className={'text-sm text-gray-300'}>{friend.message}</span>
-                                <span>{friend.isOnline}</span>
-                            </li>
+                            <div className={"flex items-center space-x-3"} key={index}>
+                                <div>
+                                    <img className={'w-14 rounded-lg '} src={friend?.image} alt={'user'}/>
+                                </div>
+                                <div>
+                                    <div className={'flex justify-between'}>
+                                        <span className={'text-sm'}>{friend.name}</span>
+                                        <span className={'text-sm text-gray-300'}>{friend.time} Am</span>
+                                    </div>
+                                    <span className={'text-sm w-full text-gray-300'}>{friend.message}</span>
+                                    <span>{friend.isOnline}</span>
+                                </div>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 </div>
 
             </div>

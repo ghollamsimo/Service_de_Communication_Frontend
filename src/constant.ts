@@ -17,5 +17,6 @@ export interface Contacts{
     image: string | null;
     name: string;
     message: string;
+    time: number
     isOnline: boolean;
 }
