@@ -2,7 +2,7 @@ import React from "react";
 
 const ChatComponent: React.FC = () => {
     return (
-        <div className="grid w-full h-full bg-gray-100">
+        <div className="grid w-full h-full">
             <div className="p-5 mt-10">
                 <h2 className="text-lg font-bold">Chat with John Doe</h2>
             </div>
