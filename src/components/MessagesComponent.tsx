@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { FaCog, FaRegUser } from "react-icons/fa";
-import { MdOutlineGroups } from "react-icons/md";
-import { TiMessage } from "react-icons/ti";
-import { MenuItem } from "../constant.ts";
-import {IoNotificationsOutline} from "react-icons/io5";
-import Notification from "./NotificationComponent.tsx";
+import Contact from "./ContactComponent.tsx";
+import {TbEdit} from "react-icons/tb";
 
 const Messages: React.FC = () => {
     const [open, setOpen] = useState<boolean>(true);
-    const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+    const [isContactOpen, setIsContactOpen] = useState(false);
 
-    const toggleNotification = () => {
-        setIsNotificationOpen(!isNotificationOpen);
+    const toggleContact = () => {
+        setIsContactOpen(!isContactOpen);
     };
     useEffect(() => {
         const handleResize = () => {
@@ -23,11 +19,6 @@ const Messages: React.FC = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const Menus: MenuItem[] = [
-        { title: "Messages", icon: <TiMessage /> },
-        { title: "Groups", icon: <MdOutlineGroups /> },
-        { title: "Settings", icon: <FaCog /> },
-    ];
 
     return (
         <div className="flex">
@@ -44,11 +35,11 @@ const Messages: React.FC = () => {
                             </h1>
                         </div>
 
-                        <div onClick={toggleNotification}>
-                            <IoNotificationsOutline className="text-2xl font-bold" />
-                            <Notification
-                                isOpen={isNotificationOpen}
-                                toggleDropdown={toggleNotification}
+                        <div onClick={toggleContact}>
+                            <TbEdit className="text-2xl font-bold" />
+                            <Contact
+                                isOpen={isContactOpen}
+                                toggleDropdown={toggleContact}
                             />
                         </div>
                     </div>
