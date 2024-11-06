@@ -5,7 +5,7 @@ import ChatNavbar from "../components/ChatNavbarComponent.tsx";
 import Friends from "../components/FriendsComponent";
 import Messages from "../components/MessagesComponent";
 import ChatComponent from "../components/ChatComponent";
-
+import '../App.css'
 const HomePage: React.FC = () => {
     const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
 
@@ -14,13 +14,15 @@ const HomePage: React.FC = () => {
     };
 
     return (
-        <div className="flex h-screen">
+        <div className="scrollable-section flex overflow-y-hidden h-screen">
             <Sidebar />
             <div className="flex-1 flex flex-col">
                 {isChatOpen ? <ChatNavbar /> : <NavBar />}
-                <main className="flex-1 flex">
+                <main className="flex-1 flex overflow-hidden">
                     {isChatOpen ? (
-                        <ChatComponent />
+                        <div className="flex-1 flex">
+                            <ChatComponent />
+                        </div>
                     ) : (
                         <Friends onFriendClick={handleFriendClick} />
                     )}

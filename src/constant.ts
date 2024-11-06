@@ -2,7 +2,9 @@ export interface MenuItem {
     title: string;
     icon: JSX.Element;
     gap?: boolean;
+    onClick?: () => void;
 }
+
 
 export interface NotificationDropdownProps {
     isOpen: boolean;
