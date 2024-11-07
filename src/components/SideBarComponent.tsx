@@ -14,11 +14,11 @@ const Sidebar: React.FC = () => {
     const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
     const [isSettingOpen, setIsSettingOpen] = useState<boolean>(false);
 
-    const toggleContact = () => {
+    const toggleContact = (): void => {
         setIsContactOpen(!isContactOpen);
     };
 
-    const toggleSetting = () => {
+    const toggleSetting = (): void => {
         setIsSettingOpen(!isSettingOpen);
     };
 
@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
     ];
 
     return (
-        <div className="flex">
+        <>
             <div
                 className={`${open ? "w-72" : "w-20"} bg-[#1B0036] h-screen p-5 pt-8 relative flex flex-col justify-between duration-300`}
             >
@@ -101,7 +101,7 @@ const Sidebar: React.FC = () => {
                     setIsSettingOpen={setIsSettingOpen}
                 />
             )}
-        </div>
+        </>
     );
 };
 

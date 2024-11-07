@@ -4,19 +4,6 @@ import Aos from "aos";
 
 const Contact: React.FC = ({isOpen}) => {
     const Friends: Contacts[] = [
-        {image: 'src/assets/profile.jpg', name: 'Mohamed', time: 10 ,message: 'Thanks for the quick response', isOnline: true},
-        {image: 'src/assets/profile.jpg', name: 'ghollam', time: 11 , message: 'Thanks for the quick response..' ,isOnline: true},
-        {image: 'src/assets/profile.jpg', name: 'ghollam', time: 11 , message: 'Thanks for the quick response..' ,isOnline: true},
-        {image: 'src/assets/profile.jpg', name: 'ghollam', time: 11 , message: 'Thanks for the quick response..' ,isOnline: true},
-        {image: 'src/assets/profile.jpg', name: 'ghollam', time: 11 , message: 'Thanks for the quick response..' ,isOnline: true},
-        {image: 'src/assets/profile.jpg', name: 'ghollam', time: 11 , message: 'Thanks for the quick response..' ,isOnline: true},
-        {image: 'src/assets/profile.jpg', name: 'ghollam', time: 11 , message: 'Thanks for the quick response..' ,isOnline: true},
-        {image: 'src/assets/profile.jpg', name: 'ghollam', time: 11 , message: 'Thanks for the quick response..' ,isOnline: true},
-        {image: 'src/assets/profile.jpg', name: 'ghollam', time: 11 , message: 'Thanks for the quick response..' ,isOnline: true},
-        {image: 'src/assets/profile.jpg', name: 'ghollam', time: 11 , message: 'Thanks for the quick response..' ,isOnline: true},
-        {image: 'src/assets/profile.jpg', name: 'ghollam', time: 11 , message: 'Thanks for the quick response..' ,isOnline: true},
-        {image: 'src/assets/profile.jpg', name: 'ghollam', time: 11 , message: 'Thanks for the quick response..' ,isOnline: true},
-        {image: 'src/assets/profile.jpg', name: 'ghollam', time: 11 , message: 'Thanks for the quick response..' ,isOnline: true},
 
     ]
     useEffect(() => {
