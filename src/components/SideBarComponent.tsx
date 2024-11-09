@@ -42,20 +42,15 @@ const Sidebar: React.FC = () => {
     return (
         <>
             <div
-                className={`${open ? "w-72" : "w-20"} bg-[#1B0036] h-screen p-5 pt-8 relative flex flex-col justify-between duration-300`}
+                className={`${open ? "w-72" : "w-20"} bg-[#1E3475] h-screen p-5 pt-8 relative flex flex-col justify-between duration-300`}
             >
                 <div>
                     <div className="flex gap-x-4 items-center">
                         <div className="text-black rounded rounded-br-2xl bg-white px-2 py-1">
                             <h1 className={`text-xl ${open && "rotate-[360deg]"} duration-500`}>
-                                MS
+                                Youchat
                             </h1>
                         </div>
-                        <h1
-                            className={`text-white font-bold origin-left text-xl duration-200 ${!open && "scale-0"}`}
-                        >
-                            Chat
-                        </h1>
                     </div>
                     <ul className="pt-6 mt-8">
                         {Menus.map((menu, index) => (

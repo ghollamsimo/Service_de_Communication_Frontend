@@ -19,7 +19,7 @@ const ChatComponent: React.FC = () => {
                         <input
                             type="text"
                             placeholder="Message..."
-                            className="w-full p-3 rounded-lg border-gray-300 border focus:outline-none ring-0 focus:ring-0 focus:border-gray-300"
+                            className="w-full focus:border-gray-400 p-3 rounded-lg border-gray-300 border focus:outline-none ring-0 focus:ring-0"
                         />
                     </div>
                     <div className="flex gap-3">

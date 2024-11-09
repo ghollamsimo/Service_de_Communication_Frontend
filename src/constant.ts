@@ -5,6 +5,13 @@ export interface MenuItem {
     onClick?: () => void;
 }
 
+export interface ConfigOptions {
+    baseURL: string;
+    headers: {
+        'Content-Type': string;
+        'Authorization': string;
+    };
+}
 
 export interface NotificationDropdownProps {
     isOpen: boolean;
@@ -21,4 +28,11 @@ export interface Contacts{
     message: string;
     time: number
     isOnline: boolean;
+}
+
+export interface RegisterField{
+    name: string;
+    email: string;
+    password: string;
+    phone: number;
 }
