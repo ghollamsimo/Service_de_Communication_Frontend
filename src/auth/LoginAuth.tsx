@@ -4,12 +4,13 @@ import { CgArrowsExchange } from "react-icons/cg";
 import Imag from "../assets/login_bg.jpg";
 import { GoVerified } from "react-icons/go";
 import Register from "./RegisterAuth.tsx";
-import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import ForgotPassword from "./ForgotpasswordAuth.tsx";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [form, setForm] = useState<boolean>(false);
+    const [showForgotPassword, setShowForgotPassword] = useState<boolean>(false);
     const [formValidator, setFormValidator] = useState({
         email: '',
         password: '',
@@ -54,14 +55,13 @@ const Login: React.FC = () => {
         if (!Object.values(newErrors).some((error) => error)) {
             console.log("Form submitted");
         }
-        if (errors){
-            navigate('/')
-        }
     };
 
     const toggleForm = (): void => {
         setForm(!form);
+        setShowForgotPassword(false);
     };
+
 
     return (
         <>
@@ -70,16 +70,22 @@ const Login: React.FC = () => {
                     <div className="flex m-3 justify-between">
                         <h1 className="font-extrabold text-lg">YouChat</h1>
                         <div className="underline cursor-pointer" onClick={toggleForm}>
-                            {form ? "Go to Login" : "register"}
+                            {showForgotPassword
+                                ? "Back"
+                                : form
+                                    ? "Go to Login"
+                                    : "Register"}
                         </div>
                     </div>
 
                     <div className="flex items-center align-middle h-screen justify-center w-full">
                         {form ? (
                             <Register/>
+                        ) : showForgotPassword ? (
+                            <ForgotPassword/>
                         ) : (
                             <div className="h-auto md:h-[33rem]">
-                                <div className="w-80 sm:w-96 flex flex-col gap-5 m-6 place-self-center">
+                                <div className="w-80 sm:w-96 flex flex-col gap-5 place-self-center">
                                     <h1 className="text-3xl font-bold">Sign In</h1>
                                     <span>Enter your email and password</span>
                                     <input
@@ -89,6 +95,14 @@ const Login: React.FC = () => {
                                         placeholder="example@gmail.com"
                                     />
                                     {errors.email && <span className="text-red-500">{errors.email}</span>}
+                                    <div className="flex justify-end -mt-3 -mb-4">
+                                        <h1
+                                            className="text-gray-400 underline text-sm cursor-pointer"
+                                            onClick={() => setShowForgotPassword(true)}
+                                        >
+                                            Forgot password?
+                                        </h1>
+                                    </div>
                                     <input
                                         name="password"
                                         onChange={handleInputChange}
