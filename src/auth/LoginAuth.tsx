@@ -5,6 +5,7 @@ import Imag from "../assets/login_bg.jpg";
 import { GoVerified } from "react-icons/go";
 import Register from "./RegisterAuth.tsx";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 const Login: React.FC = () => {
     const navigate = useNavigate()
@@ -30,7 +31,7 @@ const Login: React.FC = () => {
         }
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const handleInputChange = (e): void => {
         const { name, value } = e.target;
         setFormValidator((prevState) => ({
             ...prevState,
@@ -42,7 +43,7 @@ const Login: React.FC = () => {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent): void => {
+    const handleSubmit = (e): void => {
         e.preventDefault();
         const newErrors = {
             email: validateField("email", formValidator.email),
@@ -69,7 +70,7 @@ const Login: React.FC = () => {
                     <div className="flex m-3 justify-between">
                         <h1 className="font-extrabold text-lg">YouChat</h1>
                         <div className="underline cursor-pointer" onClick={toggleForm}>
-                            {form ? "Go to Login" : "Register"}
+                            {form ? "Go to Login" : "register"}
                         </div>
                     </div>
 
