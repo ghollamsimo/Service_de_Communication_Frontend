@@ -8,16 +8,19 @@ import { CiLogout } from "react-icons/ci";
 import { MenuItem } from "../constant.ts";
 import Contact from "./ContactComponent.tsx";
 import Settings from "./SettingsComponent.tsx";
+import Group from "./GroupComponent.tsx";
 
 const Sidebar: React.FC = () => {
     const [open, setOpen] = useState<boolean>(true);
     const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
     const [isSettingOpen, setIsSettingOpen] = useState<boolean>(false);
-
+    const [isGroupOpen, setIsGroupOpen] = useState<boolean>(false)
     const toggleContact = (): void => {
         setIsContactOpen(!isContactOpen);
     };
-
+    const toggleGroup = (): void => {
+        setIsGroupOpen(!isSettingOpen)
+    }
     const toggleSetting = (): void => {
         setIsSettingOpen(!isSettingOpen);
     };
@@ -34,7 +37,7 @@ const Sidebar: React.FC = () => {
 
     const Menus: MenuItem[] = [
         { title: "Messages", icon: <TiMessage /> },
-        { title: "Groups", icon: <MdOutlineGroups /> },
+        { title: "Groups", icon: <MdOutlineGroups /> , onClick: toggleGroup},
         { title: "Settings", icon: <FaCog />, onClick: toggleSetting },
         { title: "Contact", icon: <TbEdit />, onClick: toggleContact },
     ];
@@ -94,6 +97,13 @@ const Sidebar: React.FC = () => {
                 <Settings
                     isOpen={isSettingOpen}
                     setIsSettingOpen={setIsSettingOpen}
+                />
+            )}
+
+            {isGroupOpen && (
+                <Group
+                    isOpen={isGroupOpen}
+                    setIsGroupOpen={setIsGroupOpen}
                 />
             )}
         </>
