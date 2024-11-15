@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { RiChat1Line, RiWechatChannelsLine } from "react-icons/ri";
 import { CgArrowsExchange } from "react-icons/cg";
 import Imag from "../assets/login_bg.jpg";
@@ -6,8 +6,12 @@ import { GoVerified } from "react-icons/go";
 import Register from "./RegisterAuth.tsx";
 import ForgotPassword from "./ForgotpasswordAuth.tsx";
 import { useNavigate } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {login} from "../redux/slices/AuthSlice.ts";
+import {jwtDecode} from "jwt-decode";
 
 const Login: React.FC = () => {
+    const dispatch = useDispatch()
     const navigate = useNavigate();
     const [form, setForm] = useState<boolean>(false);
     const [showForgotPassword, setShowForgotPassword] = useState<boolean>(false);
@@ -44,7 +48,7 @@ const Login: React.FC = () => {
         }));
     };
 
-    const handleSubmit = (e): void => {
+    const handleSubmit = async (e: React.FormEvent): Promise<void> => {
         e.preventDefault();
         const newErrors = {
             email: validateField("email", formValidator.email),
@@ -53,9 +57,31 @@ const Login: React.FC = () => {
         setErrors(newErrors);
 
         if (!Object.values(newErrors).some((error) => error)) {
-            console.log("Form submitted");
+            try {
+                const resultAction = await dispatch(login(formValidator));
+                if (login.fulfilled.match(resultAction)) {
+                    const token = resultAction.payload.token;
+                    localStorage.setItem("token", token);
+                    navigate('/home');
+                } else if (login.rejected.match(resultAction)) {
+                    const errorMessage: string =  "email or password incorrect";
+                    setErrors((prevErrors) => ({
+                        ...prevErrors,
+                        email: errorMessage,
+                        password: errorMessage,
+                    }));
+                }
+            } catch (error) {
+                console.error("Login failed", error);
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    email: "Something went wrong, please try again.",
+                }));
+            }
         }
     };
+
+
 
     const toggleForm = (): void => {
         setForm(!form);

@@ -36,3 +36,8 @@ export interface RegisterField{
     password: string;
     phone: number;
 }
+
+export interface LoginField{
+    email: string;
+    password: string;
+}

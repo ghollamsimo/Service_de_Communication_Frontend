@@ -1,5 +1,5 @@
 import Api from "../api/Api.ts";
-import {RegisterField} from "../constant.ts";
+import {LoginField, RegisterField} from "../constant.ts";
 
 class AuthService {
     private http: ReturnType<typeof Api>;
@@ -10,6 +10,10 @@ class AuthService {
 
     register(data: RegisterField): Promise<RegisterField>{
         return this.http.post('/auth/register', data)
+    }
+
+    login(data: LoginField): Promise<{token: string}>{
+        return this.http.post('/auth/login', data)
     }
 }
 

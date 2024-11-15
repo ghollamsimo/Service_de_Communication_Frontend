@@ -14,6 +14,23 @@ export const register = createAsyncThunk(
     }
 );
 
+export const login = createAsyncThunk(
+    "auth/login",
+    async (
+        { email, password }: { email: string; password: string },
+        { rejectWithValue }
+    ) => {
+        try {
+            const response = await AuthService.login({ email, password });
+            console.log('hello', response)
+            return response.data;
+        } catch (error: any) {
+            const errorMessage = error.response?.data || error.message || "Something went wrong.";
+            return rejectWithValue(errorMessage);
+        }
+    }
+);
+
 const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -42,6 +59,19 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.errorMessage = action.payload || "Registration failed";
             })
+            .addCase(login.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(login.fulfilled, (state, action: PayloadAction<any>) => {
+                state.loading = false;
+                state.dataObj = action.payload;
+                state.errorMessage = null;
+            })
+            .addCase(login.rejected, (state, action: PayloadAction<string | undefined>) => {
+                state.loading = false;
+                state.errorMessage = action.payload || "login failed";
+            })
+
     }
 })
 
