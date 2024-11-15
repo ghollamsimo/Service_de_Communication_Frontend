@@ -3,13 +3,10 @@ import {Contacts} from "../constant.ts";
 import Aos from "aos";
 
 const Contact: React.FC = ({isOpen}) => {
+
     const Friends: Contacts[] = [
 
     ]
-    useEffect(() => {
-        Aos.init({ duration: 500 });
-    }, []);
-
     return(
         <>
             {isOpen && (
