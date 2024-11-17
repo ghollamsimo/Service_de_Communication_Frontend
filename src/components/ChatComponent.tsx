@@ -1,22 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoSend } from "react-icons/io5";
 import { TiMicrophone } from "react-icons/ti";
+import { io, Socket } from "socket.io-client";
 
 const ChatComponent: React.FC = () => {
     const [messages, setMessages] = useState<{ text: string; sender: string }[]>([]);
     const [inputValue, setInputValue] = useState<string>("");
+    const [socket, setSocket] = useState<Socket | null>(null);
+
+    useEffect(() => {
+        const newSocket = io("http://localhost:3000", {
+            query: { token:localStorage.getItem('token') }, 
+        });
+
+        setSocket(newSocket);
+
+        newSocket.on("onMessage", (data: { msg: string; content: string; sender: string }) => {
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                { text: data.content, sender: "receiver" }, 
+            ]);
+        });
+
+        return () => {
+            newSocket.disconnect();
+        };
+    }, []);
 
     const handleSendMessage = () => {
-        if (inputValue.trim()) {
+        if (inputValue.trim() && socket) {
+            console.log(inputValue);
+            
             setMessages([...messages, { text: inputValue, sender: "user" }]);
-            setInputValue("");
+            socket.emit("newMessage", {
+                channelId: "6732237daef252fa7d527fcc", 
+                content: inputValue,
+            });
 
-            setTimeout(() => {
-                setMessages((prevMessages) => [
-                    ...prevMessages,
-                    { text: "heyyyyy", sender: "receiver" },
-                ]);
-            }, 2000);
+            setInputValue("");
         }
     };
 
