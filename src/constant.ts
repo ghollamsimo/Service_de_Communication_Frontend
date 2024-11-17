@@ -41,3 +41,7 @@ export interface LoginField{
     email: string;
     password: string;
 }
+
+export interface FriendField{
+    name: string;
+}
