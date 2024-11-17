@@ -11,3 +11,5 @@ class FriendService {
         return this.http.get('/friends/myfriends')
     }
 }
+
+export default new FriendService()
