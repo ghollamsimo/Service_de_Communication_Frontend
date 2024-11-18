@@ -1,22 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { IoSend } from "react-icons/io5";
 import { TiMicrophone } from "react-icons/ti";
+import { SocketContext } from "../helper/SocketContext";
 
 const ChatComponent: React.FC = () => {
     const [messages, setMessages] = useState<{ text: string; sender: string }[]>([]);
     const [inputValue, setInputValue] = useState<string>("");
+    const socket = useContext(SocketContext)
+    useEffect(() => {
+      
+
+        socket?.on("onMessage", (data: { msg: string; content: string; sender: string }) => {
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                { text: data.content, sender: "receiver" }, 
+            ]);
+        });
+
+        return () => {
+            socket?.disconnect();
+        };
+    }, []);
 
     const handleSendMessage = () => {
-        if (inputValue.trim()) {
+        if (inputValue.trim() && socket) {
+            console.log(inputValue);
+            
             setMessages([...messages, { text: inputValue, sender: "user" }]);
-            setInputValue("");
+            socket.emit("newMessage", {
+                channelId: "6732237daef252fa7d527fcc", 
+                content: inputValue,
+            });
 
-            setTimeout(() => {
-                setMessages((prevMessages) => [
-                    ...prevMessages,
-                    { text: "heyyyyy", sender: "receiver" },
-                ]);
-            }, 2000);
+            setInputValue("");
         }
     };
 
