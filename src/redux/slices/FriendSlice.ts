@@ -36,7 +36,7 @@ const friendSlice = createSlice({
             })
             .addCase(getFriends.fulfilled, (state, action: PayloadAction<any>) => {
                 state.loading = false;
-                state.dataObj = action.payload;
+                state.datalist = action.payload;
                 state.errorMessage = null;
             })
             .addCase(getFriends.rejected, (state, action: PayloadAction<string | undefined>) => {
