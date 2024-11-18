@@ -9,7 +9,9 @@ import '../App.css'
 const HomePage: React.FC = () => {
     const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
 
-    const handleFriendClick = () => {
+    const handleFriendClick = (id:string) => {
+        console.log(id);
+        
         setIsChatOpen(true);
     };
 
