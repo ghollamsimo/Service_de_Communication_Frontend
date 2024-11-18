@@ -8,4 +8,6 @@ export const store = configureStore({
         friend: friendSlice
     }
 })
+export type RootState = ReturnType<typeof store.getState>;
+
 export type AppDispatch = typeof store.dispatch;
