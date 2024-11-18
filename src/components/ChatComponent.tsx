@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { IoSend } from "react-icons/io5";
 import { TiMicrophone } from "react-icons/ti";
-import { io, Socket } from "socket.io-client";
+import { SocketContext } from "../helper/SocketContext";
 
 const ChatComponent: React.FC = () => {
     const [messages, setMessages] = useState<{ text: string; sender: string }[]>([]);
     const [inputValue, setInputValue] = useState<string>("");
-    const [socket, setSocket] = useState<Socket | null>(null);
-
+    const socket = useContext(SocketContext)
     useEffect(() => {
-        const newSocket = io("http://localhost:3000", {
-            query: { token:localStorage.getItem('token') }, 
-        });
+      
 
-        setSocket(newSocket);
-
-        newSocket.on("onMessage", (data: { msg: string; content: string; sender: string }) => {
+        socket?.on("onMessage", (data: { msg: string; content: string; sender: string }) => {
             setMessages((prevMessages) => [
                 ...prevMessages,
                 { text: data.content, sender: "receiver" }, 
@@ -23,7 +18,7 @@ const ChatComponent: React.FC = () => {
         });
 
         return () => {
-            newSocket.disconnect();
+            socket?.disconnect();
         };
     }, []);
 
