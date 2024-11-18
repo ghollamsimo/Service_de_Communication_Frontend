@@ -6,12 +6,16 @@ import Friends from "../components/FriendsComponent";
 import Messages from "../components/MessagesComponent";
 import ChatComponent from "../components/ChatComponent";
 import '../App.css'
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/Store";
+import { getDmChannel } from "../redux/slices/ChannelSlice";
 const HomePage: React.FC = () => {
     const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
+    const dispatch = useDispatch<AppDispatch>();
 
     const handleFriendClick = (id:string) => {
-        console.log(id);
-        
+
+        dispatch(getDmChannel(id));         
         setIsChatOpen(true);
     };
 
