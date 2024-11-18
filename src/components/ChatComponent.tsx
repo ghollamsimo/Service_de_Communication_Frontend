@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { IoSend } from "react-icons/io5";
 import { TiMicrophone } from "react-icons/ti";
 import { SocketContext } from "../helper/SocketContext";
-
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/Store";
 const ChatComponent: React.FC = () => {
     const [messages, setMessages] = useState<{ text: string; sender: string }[]>([]);
     const [inputValue, setInputValue] = useState<string>("");
@@ -21,14 +22,19 @@ const ChatComponent: React.FC = () => {
             socket?.disconnect();
         };
     }, []);
+    const { dataObj: currentChannel, loading, errorMessage } = useSelector(
+        (state: RootState) => state.channel
+      );
+    
+      if (loading) return <div>Loading channel...</div>;
+      if (errorMessage) return <div>Error: {errorMessage}</div>;
 
     const handleSendMessage = () => {
         if (inputValue.trim() && socket) {
-            console.log(inputValue);
             
             setMessages([...messages, { text: inputValue, sender: "user" }]);
             socket.emit("newMessage", {
-                channelId: "6732237daef252fa7d527fcc", 
+                channelId: currentChannel?._id, 
                 content: inputValue,
             });
 
@@ -62,6 +68,7 @@ const ChatComponent: React.FC = () => {
                     </div>
                 ))}
             </div>
+            
 
             <div className="p-4 flex justify-between items-center bg-white shadow-lg">
                 <input
